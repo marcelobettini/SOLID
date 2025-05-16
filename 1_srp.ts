@@ -1,6 +1,11 @@
-// S olid
-// Single Responsibility Principle
-// Ejemplo funcional, aunque viola SRP
+/* <S>olid
+Single Responsibility Principle
+Principio de Responsabilidad Única (SRP)
+Una clase debe tener una única razón para cambiar, lo que significa que debe tener una sola responsabilidad. Cada clase debe
+encargarse de una sola funcionalidad. Cuando una clase tiene múltiples responsabilidades, se vuelve más propensa a errores y más difícil de mantener.
+
+Ejemplo funcional violando SRP
+/*
 /*
 class Usuario {
     private nombre: string
@@ -43,6 +48,14 @@ if (usuario.validarEmail() && usuario.validarPassword()) {
     usuario.enviarEmailBienvenida()
 }
 
+*/
+
+/*
+La clase Usuario se encarga de validar datos, persistencia y envío de notificaciones
+Si cambia la forma de validar emails, hay que modificar esta clase
+Si cambia la forma de guardar en la base de datos, hay que modificar esta clase
+Si cambia la forma de enviar emails, hay que modificar esta clase
+La clase es más difícil de probar, ya que tiene demasiadas dependencias
 */
 
 // Ejemplo refactorizado
@@ -94,7 +107,6 @@ class NotificadorUsuario {
     }
 }
 
-// Uso de la clase con múltiples responsabilidades
 const usuario = new Usuario("Juan", "juan@ejemplo.com", "psdasdfrd123")
 const validador = new ValidadorUsuario()
 const repositorio = new RespositorioUsuario()
@@ -104,3 +116,10 @@ if (validador.validarEmail(usuario.getEmail()) && validador.validarPassword(usua
     repositorio.guardarEnBaseDeDatos(usuario)
     notificador.enviarEmailBienvenida(usuario.getEmail())
 }
+/*
+Cada clase tiene una única responsabilidad (facilita el mantenimiento)
+Las clases son más pequeñas y fáciles de entender
+Las clases son más fáciles de probar de forma aislada
+Los cambios en una responsabilidad no afectan a las demás
+Mayor reutilización del código
+*/

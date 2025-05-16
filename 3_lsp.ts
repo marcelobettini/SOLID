@@ -1,6 +1,11 @@
-// so L id
-// Liskov Substitution Principle
-// Ejemplo funcional, aunque viola LSP
+/*
+so<L>id
+Liskov Substitution Principle
+Principio de Sustitución de Liskov (LSP)
+Este es un poco más complejo de entender. Paciencia: Los objetos de una superclase deben poder ser reemplazados por objetos de sus subclases sin afectar la corrección del programa. Este principio establece que las subclases deben comportarse de manera consistente con sus superclases. Las subclases pueden ampliar el comportamiento de la superclase, pero no deben alterarlo de forma que se rompa la funcionalidad existente.
+
+Ejemplo funcional que viola LSP
+*/
 
 /*
 class Ave {
@@ -37,6 +42,12 @@ try {
 }
 */
 
+/*
+El pingüino no puede cumplir con el contrato establecido por la clase Ave
+El código falla en tiempo de ejecución (se le rompe al usuario), lo que es peor que fallar en tiempo de compilación (se le rompe al programador)
+Rompe el comportamiento esperado de la superclase
+Cualquier código que use Ave podría fallar con un Pinguino
+*/
 
 interface AveComedora {
     comer(): void
@@ -78,3 +89,12 @@ const gorrion = new Gorrion()
 const pinguino = new Pinguino()
 hacerVolarAve(gorrion)
 pinguino.nadar()
+
+
+/*
+La jerarquía de clases refleja mejor la realidad del dominio (es decir, de la realidad de los objetos en el mundo)
+Se evitan errores en tiempo de ejecución
+El código es más seguro debido a la verificación de tipos en compilación
+Las interfaces definen claramente qué comportamiento se espera
+Se puede reutilizar el código común sin forzar comportamientos inapropiados
+*/
